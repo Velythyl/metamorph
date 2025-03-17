@@ -60,7 +60,7 @@ def maybe_infer_walkers():
 
     cfg.ENV.WALKERS = [
         xml_file.split(".")[0]
-        for xml_file in os.listdir(os.path.join(cfg.ENV.WALKER_DIR, "xml"))
+        for xml_file in os.listdir(os.path.join(cfg.ENV.WALKER_DIR, "xml")) if xml_file.endswith(".xml")
     ]
 
 
@@ -144,6 +144,10 @@ def main():
     # Load config options
     cfg.merge_from_file(args.cfg_file)
     cfg.merge_from_list(args.opts)
+
+    cfg.ENV.WALKER_DIR = f"{'/'.join(__file__.split('/')[:-2])}/{cfg.ENV.WALKER_DIR.replace('./', '')}"
+    cfg.UNIMAL_TEMPLATE = f"{'/'.join(__file__.split('/')[:-2])}/{cfg.UNIMAL_TEMPLATE.replace('./', '')}"
+
     # Set cfg options which are inferred
     set_cfg_options()
     os.makedirs(cfg.OUT_DIR, exist_ok=True)
