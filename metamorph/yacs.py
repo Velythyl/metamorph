@@ -206,6 +206,26 @@ class CfgNode(dict):
         self_as_dict = convert_to_dict(self, [])
         return yaml.safe_dump(self_as_dict, **kwargs)
 
+    def asdict(self):
+        def convert_to_dict(cfg_node, key_list):
+            if not isinstance(cfg_node, CfgNode):
+                _assert_with_logging(
+                    _valid_type(cfg_node),
+                    "Key {} with value {} is not a valid type; valid types: {}".format(
+                        ".".join(key_list), type(cfg_node), _VALID_TYPES
+                    ),
+                )
+                return cfg_node
+            else:
+                cfg_dict = dict(cfg_node)
+                for k, v in cfg_dict.items():
+                    cfg_dict[k] = convert_to_dict(v, key_list + [k])
+                return cfg_dict
+
+        self_as_dict = convert_to_dict(self, [])
+        return self_as_dict
+
+
     def merge_from_file(self, cfg_filename):
         """Load a yaml config file and merge it this CfgNode."""
         with open(cfg_filename, "r") as f:
