@@ -7,3 +7,4 @@ tensorboard
 torch
 torchvision
 cython<3
+numpy==2.0.0

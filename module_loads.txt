@@ -1,0 +1,4 @@
+module load cuda/12.2.2/cudnn 
+module load python/3.10
+module load mujoco/2.0
+PYTHONPATH="${PYTHONPATH}:/home/mila/c/charlie.gauthier/metamorph"
