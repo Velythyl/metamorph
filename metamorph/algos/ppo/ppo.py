@@ -22,6 +22,8 @@ from .inherit_weight import restore_from_checkpoint
 from .model import ActorCritic
 from .model import Agent
 
+from tqdm import tqdm
+
 class PPO:
     def __init__(self, print_model=True):
         # Create vectorized envs
@@ -80,7 +82,7 @@ class PPO:
             lr = ou.get_iter_lr(cur_iter)
             ou.set_lr(self.optimizer, lr)
 
-            for step in range(cfg.PPO.TIMESTEPS):
+            for step in tqdm(range(cfg.PPO.TIMESTEPS), desc=f"Collecting interactions"):
                 # Sample actions
                 val, act, logp = self.agent.act(obs)
 
