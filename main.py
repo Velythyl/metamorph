@@ -24,7 +24,7 @@ def get_old_cfg():
         f.write(json.dumps(cfg.asdict(), indent=2))
     exit()
 
-@hydra.main(version_base=None, config_path="config", config_name="config")
+@hydra.main(version_base=None, config_path="config", config_name="ft")
 def main(cfg):
     #get_old_cfg()
 
@@ -42,9 +42,11 @@ def main(cfg):
     from tools.train_ppo import set_cfg_options, ppo_train, parse_args
     set_cfg_options()
 
+    print("=== WANDB INIT ===")
     wandb_init(cfg)
+    print("DONE")
 
-
+    print("=== Training begins ===")
     ppo_train()
 
 
