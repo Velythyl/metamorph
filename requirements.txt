@@ -7,9 +7,6 @@ tensorboard
 torch
 torchvision
 cython<3
-<<<<<<< HEAD
 numpy==2.0.0
-=======
 hydra-core
 wandb
->>>>>>> 328404268693aaf17249f038dcc1908d0ee10640
