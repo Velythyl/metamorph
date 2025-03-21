@@ -1,0 +1,51 @@
+# config/model/model.yaml
+ACTOR_CRITIC: ActorCritic
+LIMB_EMBED_SIZE: 128
+JOINT_EMBED_SIZE: 128
+MAX_JOINTS: 7
+MAX_LIMBS: 8
+ACTION_STD: 0.9
+ACTION_STD_FIXED: True
+PROPRIOCEPTIVE_OBS_TYPES:
+  - body_xpos
+  - body_xvelp
+  - body_xvelr
+  - body_xquat
+  - body_pos
+  - body_ipos
+  - body_iquat
+  - geom_quat
+  - body_mass
+  - body_shape
+  - qpos
+  - qvel
+  - jnt_pos
+  - joint_range
+  - joint_axis
+  - gear
+OBS_TYPES:
+  - proprioceptive
+  - edges
+  - obs_padding_mask
+  - act_padding_mask
+OBS_TO_NORM:
+  - proprioceptive
+WRAPPERS:
+  - MultiUnimalNodeCentricObservation
+  - MultiUnimalNodeCentricAction
+
+TRANSFORMER:
+  NHEAD: 2
+  DIM_FEEDFORWARD: 1024
+  DROPOUT: 0.0
+  NLAYERS: 5
+  EMBED_INIT: 0.1
+  DECODER_INIT: 0.01
+  DECODER_DIMS: []
+  EXT_HIDDEN_DIMS: []
+  EXT_MIX: none
+  POS_EMBEDDING: learnt
+
+FINETUNE:
+  FULL_MODEL: False
+  LAYER_SUBSTRING: []

@@ -1,0 +1,39 @@
+# config/default.yaml
+defaults:
+  - XML: default
+  - ENV: default
+  - TERRAIN: default
+  - OBJECT: default
+  - HFIELD: default
+  - VIDEO: default
+  - PPO: default  # todo rename folder to rl?
+  - TASK_SAMPLING: default
+  - MODEL: default
+  - CUDNN: default
+  - VECENV: default
+  - meta: default.yaml
+#  - _self_
+
+OUT_DIR: ./output
+CFG_DEST: config.yaml
+ENV_NAME: Unimal-v0
+DEVICE: cuda:0
+LOG_DEST: stdout
+LOG_PERIOD: 10
+CHECKPOINT_PERIOD: 100
+UNIMAL_PATH: ./dataset
+EVAL_PERIOD: -1
+NODE_ID: -1
+NUM_NODES: 1
+UNIMAL_TEMPLATE: ./metamorph/envs/assets/unimal.xml
+SAVE_HIST_WEIGHTS: False
+DESC: ""
+EXIT_ON_MJ_STEP_EXCEPTION: False
+MIRROR_DATA_AUG: False
+
+
+RNG_SEED: 1409
+ENV:
+  MODULES: ["Agent", "Floor"]
+TERRAIN:
+  SIZE: [100, 100, 1]

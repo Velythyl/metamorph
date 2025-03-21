@@ -7,3 +7,5 @@ tensorboard
 torch
 torchvision
 cython<3
+hydra-core
+wandb
